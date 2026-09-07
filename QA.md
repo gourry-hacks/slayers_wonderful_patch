@@ -1,3 +1,45 @@
+# Release verification — 2026-09-07.2
+
+Target BIN SHA-256: `3b0a4539989139d86b2da1e55ade1cb7a590abcc558cd951031fe10f3662ab81`.
+
+This release adds the final audited music-menu bank (37 indexed labels), the
+64-byte memory-card title, two fixed title TIMs, and English ending-credit text.
+
+The source-dependent XOR package was round-tripped from the original Japanese
+BIN/CUE and checked against the complete candidate byte for byte.
+
+## New verification
+
+- Compared every raw sector against release 2026-09-07.1. Changes are confined to
+  one EXE title sector, five ELS sectors in overlay 29, 151 title-image sectors,
+  and 20,168 STAFF.STR video sectors. All other bytes are unchanged.
+- Checked all 21,070 indexed strings. Exactly the intended 37 labels changed;
+  all other translations, all 41 overlay code/control sections, and their
+  resource names remain unchanged. No indexed Japanese messages remain.
+- Replayed the native title-to-stack and title-to-save-header copies with guard
+  bytes. Only the fixed title and its original terminator are copied. No card
+  I/O was performed. Save identifiers, layout, icons, and executable code remain
+  unchanged; existing card titles change only when the game rewrites a save.
+- Replayed all 37 labels through native byte decoding and text placement with
+  glyph submission intercepted. All fit the existing menu width without wrapping.
+  Ordinary-play access to this optional music menu has not been demonstrated.
+- Both title TIM headers, dimensions, record sizes and surrounding FIELD data
+  remain unchanged. Previews were inspected after conversion to PSX pixels.
+- Decoded all 2,149 replacement credit frames at 320x240 and the original
+  15000/1001 cadence (143.409933 seconds). Every frame fits its original sector
+  allocation. Original frame/chunk numbering and all 8,644 Form 2 sectors across
+  the disc, including the ending song, are byte-identical.
+- Independently regenerated EDC/ECC for all 213,770 Mode 2 Form 1 sectors with
+  the Redux C implementation; every sector passes.
+
+Fourteen credited personal names retain their Japanese spelling because their
+Roman-letter readings were not verified. All role headings and company credits
+are English. Song-lyric subtitles remain outside this visual-credit pass.
+These checks do not establish full-game progression or real-hardware coverage.
+Detailed reproducible evidence is in the local `qa/completion_20260907/` folder.
+
+## Previous rendering repair (retained unchanged)
+
 # Release verification — 2026-09-07.1
 
 The rebuilt canonical BIN matches the tested rendering-repair candidate:

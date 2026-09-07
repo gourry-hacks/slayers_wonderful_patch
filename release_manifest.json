@@ -2,7 +2,7 @@
   "schema": 1,
   "project": "Slayers Wonderful English Patch",
   "disc_id": "SLPS-01599",
-  "patch_version": "2026-09-07.1",
+  "patch_version": "2026-09-07.2",
   "source": {
     "bin": {
       "name": "sw.bin",
@@ -19,7 +19,7 @@
     "bin": {
       "name": "wonderful_patched.bin",
       "size": 523117728,
-      "sha256": "7f446082dc9ae9543fe645cf13cb6ebb8eb59b0770f0a9fe519e18e3643c3ad4"
+      "sha256": "3b0a4539989139d86b2da1e55ade1cb7a590abcc558cd951031fe10f3662ab81"
     },
     "cue": {
       "name": "wonderful_patched.cue",
@@ -32,21 +32,26 @@
       "format": "SLRXOR1",
       "storage": "xz",
       "block_size": 65536,
-      "record_count": 1721,
-      "delta_size": 112808148,
-      "delta_sha256": "975c8467608451ee56619cc1a709bd1c5de216b85fd25bd0923ba23cdec182c6",
-      "stored_size": 66927008,
-      "stored_sha256": "dbb60984cf1a6e648aeee52789ec8387e2302aa4bb1b4590c8457ea27bab3496",
+      "record_count": 2501,
+      "delta_size": 163935588,
+      "delta_sha256": "f09b3e60f44721fdae111c3b5c798e831ab281248fe8e3da43e1d1a2f0e5ff0f",
+      "stored_size": 103433136,
+      "stored_sha256": "f198c1d111c428a9acf14560d452345b6647d26ef9330835c7c50508c84bd38c",
       "parts": [
         {
           "path": "patches/wonderful_patched.bin.slrxor.xz.part01",
           "size": 47185920,
-          "sha256": "ee919d8e96fd85bf5eeac1e3b9157b98cc9437736663321d2a84c031c26c1fd2"
+          "sha256": "5846ec3e39dd4f83c5c1e47bd898bc5bb02ef7ebfc00637e90fa638b5a50f799"
         },
         {
           "path": "patches/wonderful_patched.bin.slrxor.xz.part02",
-          "size": 19741088,
-          "sha256": "b8c0b36b605ab01dcb63ee2f486e5fd2a20fbffad616d2d5fd9ebef8f858ae5b"
+          "size": 47185920,
+          "sha256": "3f573fb6ef1dca3263f1ad0befa63b63d41217f8e7a1b2b8bc5593fe2f206de5"
+        },
+        {
+          "path": "patches/wonderful_patched.bin.slrxor.xz.part03",
+          "size": 9061296,
+          "sha256": "78a739540041724b6040bc44008897f7e0413cbab325849d430b1ebd1769e048"
         }
       ]
     },
