@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "project": "Slayers Wonderful English Patch",
+  "disc_id": "SLPS-01599",
+  "patch_version": "2026-09-07.1",
+  "source": {
+    "bin": {
+      "name": "sw.bin",
+      "size": 523117728,
+      "sha256": "93560e9c0151baa2fa1321fe056637ef8a42962ef65b80156191b45a1b4bbfc2"
+    },
+    "cue": {
+      "name": "sw.cue",
+      "size": 68,
+      "sha256": "c6f94df2bcb2b9284118943a62f420f19f11ee8fd0cb4aaf01b09d65f6cce997"
+    }
+  },
+  "target": {
+    "bin": {
+      "name": "wonderful_patched.bin",
+      "size": 523117728,
+      "sha256": "7f446082dc9ae9543fe645cf13cb6ebb8eb59b0770f0a9fe519e18e3643c3ad4"
+    },
+    "cue": {
+      "name": "wonderful_patched.cue",
+      "size": 83,
+      "sha256": "de66f8498a58a5bc5f8aff03f53b01ee48a5258fe211a4046c37cb44da445eaa"
+    }
+  },
+  "patches": {
+    "bin": {
+      "format": "SLRXOR1",
+      "storage": "xz",
+      "block_size": 65536,
+      "record_count": 1721,
+      "delta_size": 112808148,
+      "delta_sha256": "975c8467608451ee56619cc1a709bd1c5de216b85fd25bd0923ba23cdec182c6",
+      "stored_size": 66927008,
+      "stored_sha256": "dbb60984cf1a6e648aeee52789ec8387e2302aa4bb1b4590c8457ea27bab3496",
+      "parts": [
+        {
+          "path": "patches/wonderful_patched.bin.slrxor.xz.part01",
+          "size": 47185920,
+          "sha256": "ee919d8e96fd85bf5eeac1e3b9157b98cc9437736663321d2a84c031c26c1fd2"
+        },
+        {
+          "path": "patches/wonderful_patched.bin.slrxor.xz.part02",
+          "size": 19741088,
+          "sha256": "b8c0b36b605ab01dcb63ee2f486e5fd2a20fbffad616d2d5fd9ebef8f858ae5b"
+        }
+      ]
+    },
+    "cue": {
+      "format": "SLRXOR1",
+      "storage": "xz",
+      "block_size": 65536,
+      "record_count": 1,
+      "delta_size": 135,
+      "delta_sha256": "dfec971c067439c986fc875bbcfa87626acdd7aad97dfd47f8a45734f0ffd502",
+      "stored_size": 172,
+      "stored_sha256": "e76498dbea570d84ce0f3350c195e9f940f0af2b0f1ca82e11692f17f977af05",
+      "parts": [
+        {
+          "path": "patches/wonderful_patched.cue.slrxor.xz.part01",
+          "size": 172,
+          "sha256": "e76498dbea570d84ce0f3350c195e9f940f0af2b0f1ca82e11692f17f977af05"
+        }
+      ]
+    }
+  }
+}
