@@ -1,3 +1,38 @@
+# Release verification — 2026-09-12.1
+
+Target BIN SHA-256: `cc774a0661c3943fc6aefe389b732cb8e4264841c7018997534ef1604716e0c8`.
+
+Fixes heap corruption when opening Lina's battle magic menu. The translated
+battle-label asset used capacity 14, but its independently allocated clones
+still reserved only 1,028 bytes. The header now requests 1,188 bytes, enough
+for the object and both GPU packet buffers, including terminal commands.
+
+- Reproduced the old crash in PCSX-Redux: a label's second buffer overwrote
+  a neighboring digit sprite's frame pointer with GPU command `0xe1000076`.
+- Loaded corrected battle resources from the rebuilt disc in a separate
+  emulator process. Lina's six-spell list, cursor movement, cancellation,
+  reopening, targeting, and Flare Arrow casting passed. MP fell from 300 to 290
+  and control returned to the command menu. This used a migrated early-story
+  checkpoint and explicit battle turn selection, not a full clean-boot run.
+- Replayed every one of 116 shared spell/item/special labels through the original
+  clone and packet-emission routines for both frames. The old clone size fails
+  53 of 232 cases; the corrected size has no allocation overruns in 232 cases.
+- Only sector 51435 differs from 2026-09-07.2: one allocation-size payload byte
+  and EDC/ECC. The changed sector passes independent Redux C checksum checking.
+  Executable code, save behavior, translations, and every other sector are unchanged.
+- The complete production rebuild matches the emulator candidate byte for byte.
+  The XOR patcher reconstructs the same complete BIN/CUE from the Japanese source.
+
+The previous audit below checked the embedded battle-label object, not its
+independent clones. Its buffer results did not establish clone heap safety;
+this release corrects that missed path. Older verification is retained as
+historical evidence. Full-game and real-hardware coverage remain unclaimed.
+
+Restart the emulator with the new disc and use a memory-card save or a fresh
+game; old emulator save states retain the previous assets and allocations.
+
+## Previous release evidence
+
 # Release verification — 2026-09-07.2
 
 Target BIN SHA-256: `3b0a4539989139d86b2da1e55ade1cb7a590abcc558cd951031fe10f3662ab81`.

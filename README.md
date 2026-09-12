@@ -1,6 +1,6 @@
 # Slayers Wonderful English Patch
 
-Version **2026-09-07.2**, for the Japanese PlayStation release **SLPS-01599**.
+Version **2026-09-12.1**, for the Japanese PlayStation release **SLPS-01599**.
 
 **PCSX-Redux users: enable SPU IRQ.** With that setting disabled, even the
 original Japanese game can wait indefinitely during voiced prologue events.
@@ -45,6 +45,8 @@ retain the previous executable and already-loaded graphics.
   readings retain their Japanese credited spellings. Original song audio remains.
 - Matching compact menu glyphs and six-pixel spacing in both rendering modes.
 - Corrected dialogue instruction timing and battle-label frame-buffer capacity.
+- Fixed battle-menu heap corruption when opening Lina’s magic list; spell, item,
+  and special-attack label clones now reserve both complete drawing buffers.
 
 Long menu names use documented display abbreviations to fit their existing
 panels. The repaired disc preserves the original disc size and archive extents.
@@ -57,7 +59,7 @@ a claim of a complete Wonderful playthrough.
 | --- | ---: | --- |
 | Original `sw.bin` | 523117728 | `93560e9c0151baa2fa1321fe056637ef8a42962ef65b80156191b45a1b4bbfc2` |
 | Original `sw.cue` | 68 | `c6f94df2bcb2b9284118943a62f420f19f11ee8fd0cb4aaf01b09d65f6cce997` |
-| English `wonderful_patched.bin` | 523117728 | `3b0a4539989139d86b2da1e55ade1cb7a590abcc558cd951031fe10f3662ab81` |
+| English `wonderful_patched.bin` | 523117728 | `cc774a0661c3943fc6aefe389b732cb8e4264841c7018997534ef1604716e0c8` |
 | English `wonderful_patched.cue` | 83 | `de66f8498a58a5bc5f8aff03f53b01ee48a5258fe211a4046c37cb44da445eaa` |
 
 CUE bytes, including line endings, must match the supported dump.
@@ -79,5 +81,5 @@ It packages an already-built translation; it does not build the translation
 from the original game assets. Parts are limited to 45 MiB each.
 
 ```sh
-python3 maintainer/build_release.py --patch-version 2026-09-07.2
+python3 maintainer/build_release.py --patch-version 2026-09-12.1
 ```
