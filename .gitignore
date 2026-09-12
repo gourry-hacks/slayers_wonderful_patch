@@ -13,3 +13,7 @@ output/
 .release-build-*/
 __pycache__/
 *.py[cod]
+
+# Contributor-generated catalogs, glyph sheets and discs
+localization-work/
+localization-output/

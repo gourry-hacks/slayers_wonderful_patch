@@ -1,3 +1,37 @@
+# Localization toolkit verification — 2026-09-12
+
+The new `localize.py` workflow is additive; the packaged English XOR parts,
+release manifest and canonical disc files are unchanged.
+
+- Exported 3,337 entries from the verified original disc, with English
+  reference text reconstructed from the release patch.
+- An empty catalog with English fallback reproduces the canonical English BIN
+  SHA-256 exactly: `cc774a0661c3943fc6aefe389b732cb8e4264841c7018997534ef1604716e0c8`.
+- A partial Cyrillic build exercises actual localized text and font generation.
+  Royal 2's opening uses the compressed-scene path, with unedited records
+  expanded/recompressed and pointers checked on readback.
+- Complete synthetic Cyrillic catalogs exercise every supported record and
+  preserve untouched resources/code/control data. Synthetic strings test the
+  compiler; they are not translations or evidence of a full playthrough.
+- Independent PCSX-Redux C EDC/ECC regeneration agrees on every modified or
+  appended sector. The Python writer is not its own only checksum oracle.
+- Russian, French, Spanish and German authoring presets compile with their
+  complete reserved alphabets and representative accented text. Glyph proof
+  sheets are generated for visual review; font lookup/allocation is bounded.
+- Nine original-instruction replays verify the earlier two-byte-glyph wrap
+  boundary. Localized Wonderful lines are limited to 22 characters.
+- Focused tests cover source/ID/control changes, duplicates, fuzzy entries,
+  Unicode/layout rejection, output-path containment, fixed extents and Form 2
+  write rejection. Game-specific tests exercise relocation/dictionaries/font
+  compression (Royal 2) or ELS offsets/carrier encoding (Wonderful).
+
+These tests establish build/readback coverage, not emulator playability of a
+finished localization. No complete target-language catalog exists yet. Newly
+localized text, accents and scene layouts require emulator review before
+publishing a language patch. The toolkit README lists excluded text/art domains.
+Private evidence and generated catalogs are in `qa/localization_20260912/` in
+the Slayers workspace; original-disc text and test disc images are not committed.
+
 # Patcher input update — 2026-09-12
 
 The patcher now verifies and patches only the input BIN. It generates the

@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "locale": "ru",
+  "name": "Russian",
+  "output_stem": "slayers_wonderful_ru",
+  "required_characters": "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя«»—…"
+}

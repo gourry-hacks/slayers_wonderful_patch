@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "locale": "es",
+  "name": "Spanish",
+  "output_stem": "slayers_wonderful_es",
+  "required_characters": "ÁÉÍÑÓÚÜáéíñóúü¡¿"
+}

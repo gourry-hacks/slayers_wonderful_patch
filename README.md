@@ -86,3 +86,10 @@ from the original game assets. Parts are limited to 45 MiB each.
 ```sh
 python3 maintainer/build_release.py --patch-version 2026-09-12.1
 ```
+
+## Other languages
+
+The [localization toolkit](localization/README.md) exports Japanese dialogue
+to editable PO files and builds a localized disc with custom font glyphs. It
+includes Russian, French, Spanish, and German language definitions. These are
+authoring presets, not completed translations.
