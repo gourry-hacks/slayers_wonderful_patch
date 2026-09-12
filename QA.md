@@ -1,3 +1,19 @@
+# Patcher input update — 2026-09-12
+
+The patcher now verifies and patches only the input BIN. It generates the
+single-track CUE from the output BIN name; `--cue` remains accepted but is
+optional and ignored. Release 2026-09-12.1 disc contents are unchanged.
+
+- Six end-to-end unit tests pass, covering absent, nonexistent, empty, renamed,
+  and differently formatted CUE inputs, verification-only mode, and continued
+  rejection of incorrect BIN contents and corrupted patch parts. Run them with
+  `python -m unittest discover -s tests -v`.
+- A complete production patch from the original Japanese BIN, with a renamed
+  CUE containing a BOM, comment, and LF line endings, reproduced the release
+  BIN and CUE sizes and SHA-256 hashes exactly.
+- The release builder needs only source and target BINs; it checks the generated
+  CUE against the pinned target and no longer packages a CUE XOR delta.
+
 # Release verification — 2026-09-12.1
 
 Target BIN SHA-256: `cc774a0661c3943fc6aefe389b732cb8e4264841c7018997534ef1604716e0c8`.

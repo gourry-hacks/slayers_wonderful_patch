@@ -6,24 +6,24 @@ Version **2026-09-12.1**, for the Japanese PlayStation release **SLPS-01599**.
 original Japanese game can wait indefinitely during voiced prologue events.
 The Slayers Eva launcher enables it automatically for Wonderful.
 
-This source-dependent XOR package reconstructs the English BIN/CUE from the
-supported original disc dump. Python 3.10 or newer is required; no additional
+This source-dependent XOR package patches the supported original BIN and
+generates its English CUE. Python 3.10 or newer is required; no additional
 Python packages are needed. Download the complete repository, including every
 file in `patches/`.
 
 ```sh
-python3 patch.py --bin /path/to/sw.bin --cue /path/to/sw.cue
+python3 patch.py --bin /path/to/sw.bin
 ```
 
 On Windows, use `py -3` in place of `python3`. The patcher checks the original
-files and every patch part, builds temporary outputs, verifies their SHA-256
+BIN and every BIN patch part, builds temporary outputs, verifies their SHA-256
 hashes, and then installs `output/wonderful_patched.bin` and
 `output/wonderful_patched.cue`. Open the resulting CUE in your emulator.
 Use a separate output directory from your original disc files.
 
 ```sh
-python3 patch.py --bin /path/to/sw.bin --cue /path/to/sw.cue --verify-only
-python3 patch.py --bin /path/to/sw.bin --cue /path/to/sw.cue --output-dir /path/to/english
+python3 patch.py --bin /path/to/sw.bin --verify-only
+python3 patch.py --bin /path/to/sw.bin --output-dir /path/to/english
 ```
 
 Apply this release to the original Japanese dump. It already contains the full
@@ -58,11 +58,13 @@ a claim of a complete Wonderful playthrough.
 | File | Bytes | SHA-256 |
 | --- | ---: | --- |
 | Original `sw.bin` | 523117728 | `93560e9c0151baa2fa1321fe056637ef8a42962ef65b80156191b45a1b4bbfc2` |
-| Original `sw.cue` | 68 | `c6f94df2bcb2b9284118943a62f420f19f11ee8fd0cb4aaf01b09d65f6cce997` |
 | English `wonderful_patched.bin` | 523117728 | `cc774a0661c3943fc6aefe389b732cb8e4264841c7018997534ef1604716e0c8` |
 | English `wonderful_patched.cue` | 83 | `de66f8498a58a5bc5f8aff03f53b01ee48a5258fe211a4046c37cb44da445eaa` |
 
-CUE bytes, including line endings, must match the supported dump.
+No input CUE is required or checked. The optional `--cue` argument is accepted
+for compatibility and ignored, so filenames, comments and line endings in an
+existing CUE do not affect patching. The output CUE is generated for the verified
+BIN's single `MODE2/2352` track and points to `wonderful_patched.bin`.
 `release_manifest.json` records the complete source, target, and patch-part
 sizes and hashes. Source disc images and emulator packages are not included.
 
@@ -75,8 +77,9 @@ and Mafoo343. PlayStation game patch: Gourry.
 ## Maintainer packaging
 
 `maintainer/build_release.py` regenerates the XOR containers from the exact
-source and target hashes pinned in the script. It defaults to `../sw.bin`,
-`../sw.cue`, and `../patched/wonderful_patched.*`, and accepts explicit paths.
+source and target BIN hashes pinned in the script. It defaults to `../sw.bin`
+and `../patched/wonderful_patched.bin`, and accepts explicit paths. CUE data is
+generated using the same template as the patcher; no CUE delta is packaged.
 It packages an already-built translation; it does not build the translation
 from the original game assets. Parts are limited to 45 MiB each.
 

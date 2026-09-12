@@ -10,6 +10,7 @@ import lzma
 import os
 from pathlib import Path
 import struct
+import sys
 import tempfile
 
 
@@ -20,13 +21,12 @@ MAGIC = b"SLRXOR1\0"
 HEADER = struct.Struct("<8sIQQ")
 RECORD = struct.Struct("<QI")
 REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO_ROOT))
+from patch import render_cue
 
 EXPECTED = {'source': {'bin': {'name': 'sw.bin',
                     'size': 523117728,
-                    'sha256': '93560e9c0151baa2fa1321fe056637ef8a42962ef65b80156191b45a1b4bbfc2'},
-            'cue': {'name': 'sw.cue',
-                    'size': 68,
-                    'sha256': 'c6f94df2bcb2b9284118943a62f420f19f11ee8fd0cb4aaf01b09d65f6cce997'}},
+                    'sha256': '93560e9c0151baa2fa1321fe056637ef8a42962ef65b80156191b45a1b4bbfc2'}},
  'target': {'bin': {'name': 'wonderful_patched.bin',
                     'size': 523117728,
                     'sha256': 'cc774a0661c3943fc6aefe389b732cb8e4264841c7018997534ef1604716e0c8'},
@@ -167,12 +167,12 @@ def parse_args() -> argparse.Namespace:
     parent = REPO_ROOT.parent
     parser = argparse.ArgumentParser()
     parser.add_argument("--source-bin", type=Path, default=parent / "sw.bin")
-    parser.add_argument("--source-cue", type=Path, default=parent / "sw.cue")
+    parser.add_argument("--source-cue", type=Path, help="legacy argument; ignored")
     parser.add_argument(
         "--target-bin", type=Path, default=parent / "patched" / "wonderful_patched.bin"
     )
     parser.add_argument(
-        "--target-cue", type=Path, default=parent / "patched" / "wonderful_patched.cue"
+        "--target-cue", type=Path, help="legacy argument; CUE is generated"
     )
     parser.add_argument("--patch-version", default="2026-09-12.1")
     return parser.parse_args()
@@ -181,12 +181,17 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     inputs = {
-        "source": {"bin": args.source_bin.resolve(), "cue": args.source_cue.resolve()},
-        "target": {"bin": args.target_bin.resolve(), "cue": args.target_cue.resolve()},
+        "source": {"bin": args.source_bin.resolve()},
+        "target": {"bin": args.target_bin.resolve()},
     }
     for side in ("source", "target"):
-        for kind in ("bin", "cue"):
+        for kind in ("bin",):
             verify(inputs[side][kind], EXPECTED[side][kind])
+
+    cue = render_cue(str(EXPECTED["target"]["bin"]["name"]))
+    if (len(cue) != EXPECTED["target"]["cue"]["size"] or
+            hashlib.sha256(cue).hexdigest() != EXPECTED["target"]["cue"]["sha256"]):
+        raise ValueError("generated CUE does not match the pinned target")
 
     patches_dir = REPO_ROOT / "patches"
     patches_dir.mkdir(parents=True, exist_ok=True)
@@ -194,7 +199,7 @@ def main() -> None:
         stage = Path(tmp)
         records: dict[str, dict[str, object]] = {}
         staged_parts: list[Path] = []
-        for kind in ("bin", "cue"):
+        for kind in ("bin",):
             stored = stage / f"wonderful_patched.{kind}.slrxor.xz"
             print(f"building {kind.upper()} XOR patch...")
             delta_hash, delta_size, record_count = build_xor_container(

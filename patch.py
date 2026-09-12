@@ -252,12 +252,24 @@ def load_manifest() -> dict[str, object]:
     return document
 
 
+def render_cue(bin_name: str) -> bytes:
+    """The verified disc has one raw Mode 2 track; its CUE needs no source."""
+    return (
+        f'FILE "{bin_name}" BINARY\r\n'
+        '  TRACK 01 MODE2/2352\r\n'
+        '    INDEX 01 00:00:00\r\n'
+    ).encode("ascii")
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Apply the Slayers Wonderful English translation patch."
     )
     parser.add_argument("--bin", required=True, type=Path, help="original sw.bin")
-    parser.add_argument("--cue", required=True, type=Path, help="original sw.cue")
+    parser.add_argument(
+        "--cue", type=Path,
+        help="optional legacy argument; the input CUE is not read or required",
+    )
     parser.add_argument(
         "--output-dir", type=Path, default=REPO_ROOT / "output"
     )
@@ -283,12 +295,9 @@ def main() -> int:
         assert isinstance(targets, dict)
         assert isinstance(patches, dict)
 
-        inputs = {"bin": args.bin.resolve(), "cue": args.cue.resolve()}
-        for kind, path in inputs.items():
-            verify_file(f"source {kind.upper()}", path, sources[kind])
-        patch_parts = {
-            kind: verify_patch_parts(patches[kind]) for kind in ("bin", "cue")
-        }
+        source_bin = args.bin.resolve()
+        verify_file("source BIN", source_bin, sources["bin"])
+        patch_parts = verify_patch_parts(patches["bin"])
 
         if args.verify_only:
             print("source and patch files are valid")
@@ -313,15 +322,14 @@ def main() -> int:
             for kind in ("bin", "cue")
         }
         try:
+            print("applying BIN XOR patch...")
+            apply_xor_delta(
+                source_bin, temporary_paths["bin"], patches["bin"],
+                patch_parts, targets["bin"],
+            )
+            print("generating CUE...")
+            temporary_paths["cue"].write_bytes(render_cue(str(targets["bin"]["name"])))
             for kind in ("bin", "cue"):
-                print(f"applying {kind.upper()} XOR patch...")
-                apply_xor_delta(
-                    inputs[kind],
-                    temporary_paths[kind],
-                    patches[kind],
-                    patch_parts[kind],
-                    targets[kind],
-                )
                 verify_file(
                     f"patched {kind.upper()}", temporary_paths[kind], targets[kind]
                 )
