@@ -2,7 +2,7 @@
   "schema": 1,
   "project": "Slayers Wonderful English Patch",
   "disc_id": "SLPS-01599",
-  "patch_version": "2026-09-12.1",
+  "patch_version": "2026-10-30.1",
   "source": {
     "bin": {
       "name": "sw.bin",
@@ -14,7 +14,7 @@
     "bin": {
       "name": "wonderful_patched.bin",
       "size": 523117728,
-      "sha256": "cc774a0661c3943fc6aefe389b732cb8e4264841c7018997534ef1604716e0c8"
+      "sha256": "b5a896d5e214c21fb5c567f4a8db7747a0a6da2a5c7bcf4b582e89ae355a4e15"
     },
     "cue": {
       "name": "wonderful_patched.cue",
@@ -27,26 +27,26 @@
       "format": "SLRXOR1",
       "storage": "xz",
       "block_size": 65536,
-      "record_count": 2501,
-      "delta_size": 163935588,
-      "delta_sha256": "a2aa13c7b1181f7d17ba141df20f8ee2cae9a40084a9711789e996edb36aed2f",
-      "stored_size": 103432048,
-      "stored_sha256": "70199e85e25538124df4908ab294dce21515191b03d0ea64032877434e6042d8",
+      "record_count": 2504,
+      "delta_size": 164132232,
+      "delta_sha256": "f2574f236f07542a10a6e16c1994ca487566e44aecafb99a4d47facd23e617f6",
+      "stored_size": 103447424,
+      "stored_sha256": "eb7dfc5b56238b471ee648605c22e7091cfc91624ba72a9895f7a6727688f093",
       "parts": [
         {
           "path": "patches/wonderful_patched.bin.slrxor.xz.part01",
           "size": 47185920,
-          "sha256": "7194b49463609d712a0ae01789291d8120ad7b9beda36c562c7eff5da06098ab"
+          "sha256": "2ed8f38daf336a33ca56d19b5abde4eaecd458d145dda86c364a64cfe9ec3c2f"
         },
         {
           "path": "patches/wonderful_patched.bin.slrxor.xz.part02",
           "size": 47185920,
-          "sha256": "e321b803b4b22c29a5e417650c885405db4b9ccf08861a0ece9958eaccbc4667"
+          "sha256": "ad85d103930a99ec16637e29a57640840dd2e7c12e99c0e8d625dfe6a7804d5e"
         },
         {
           "path": "patches/wonderful_patched.bin.slrxor.xz.part03",
-          "size": 9060208,
-          "sha256": "a817e9e6b3aaf53cb816cfb593253e490dfcdc391b35f841f4d3138775f88b74"
+          "size": 9075584,
+          "sha256": "94dc7f789f2a6edfe2c01e13450d7535e4224fe3995d7676735f14e20d0d22d3"
         }
       ]
     }

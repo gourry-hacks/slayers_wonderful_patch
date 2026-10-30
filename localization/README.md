@@ -103,6 +103,8 @@ python3 -m unittest discover -s localization/tests -v
 ```
 
 The adapter pins the English base and fails closed on a new release until its
-layout/font assumptions are reviewed. Keep original-disc extraction local;
+layout/font assumptions are reviewed. The current supported English base is
+**2026-10-30.1**, including revised dialogue and the standard controls update.
+Keep original-disc extraction local;
 commit intentional target-language catalogs separately, not generated source
 inventories or disc images. See the repository `QA.md` for tested coverage.

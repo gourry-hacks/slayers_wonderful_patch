@@ -1,3 +1,44 @@
+# Release verification — 2026-10-30.1
+
+The regular patch now includes the tested right-stick camera and moving-confirm
+changes, plus the complete October 29 character-voice revision. Apply it directly
+to the original Japanese BIN; no earlier English patch is required.
+
+- The full disc builder reproduces the tested combined image byte for byte:
+  `b5a896d5e214c21fb5c567f4a8db7747a0a6da2a5c7bcf4b582e89ae355a4e15`.
+- Applying the rebuilt production XOR package to the original Japanese BIN
+  reproduces that same 523,117,728-byte image and the generated 83-byte CUE
+  (`de66f8498a58a5bc5f8aff03f53b01ee48a5258fe211a4046c37cb44da445eaa`).
+  Every patch-part, combined stream and final-output checksum is verified.
+- All six patcher tests and ten localization tests pass. The localization
+  adapter was reviewed and repinned to this release: its 3,337-entry empty
+  catalog reproduces the complete new English image exactly. A synthetic
+  Cyrillic sample compiles 70 glyphs; executable changes are confined to the
+  allocated font cells. This is a compatibility check, not a Russian translation.
+- The dialogue pass reads all 3,417 extracted unique entries and all movie
+  dialogue, changing 644 entries at 1,331 occurrences plus ten movie cues.
+  Original line-control counts, 24-cell English layout, all 41 VM/code/variable
+  sections, archive sizes and sector starts are preserved. Every changed string
+  slot was independently read back; all other string slots are unchanged.
+- The earlier Beetle PSX and PCSX ReARMed checks cover cold boot, opening movies
+  and battle, revised castle dialogue and field/town return. Controls checks
+  cover right-stick turns, neutral dead zone and a moving pickup that awards
+  one coin exactly once while completing the original event. The user also
+  confirmed the combined experimental build worked before promotion. The regular
+  BIN is identical to that tested image; the filename/CUE is now the normal pair.
+- All 18 dialogue movies decode completely. All 40,794 subtitle sectors verify
+  EDC/ECC, and all 8,640 movie XA audio sectors remain byte-identical. The prior
+  battle-menu heap/clone-allocation and rendering fixes are retained.
+
+Set port 1 to DualShock with analog mode enabled for stick input. Digital pad
+input remains supported. Camera turns use the original turn behavior and scene
+locks; interactions retain original scripts and movement completion. Boot the
+new CUE and load an in-game memory-card save, since old emulator savestates can
+retain old code and scripts. No full branch-complete playthrough or new physical
+console/mobile/core-configuration coverage is claimed.
+
+Older dated sections below describe previous releases and their original hashes.
+
 # Localization toolkit verification — 2026-09-12
 
 The new `localize.py` workflow is additive; the packaged English XOR parts,

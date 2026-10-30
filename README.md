@@ -1,6 +1,30 @@
 # Slayers Wonderful English Patch
 
-Version **2026-09-12.1**, for the Japanese PlayStation release **SLPS-01599**.
+Version **2026-10-30.1**, for the Japanese PlayStation release **SLPS-01599**.
+
+## Patch your image (Windows or Linux)
+
+1. [Download the complete patch ZIP](https://github.com/gourry-hacks/slayers_wonderful_patch/archive/refs/tags/v2026-10-30.1.zip)
+   and extract it. Install Python 3.10 or newer if needed.
+2. Open a terminal in the extracted folder and run the command for your system,
+   replacing the example with the path to your **original Japanese BIN**:
+
+   Windows:
+   ```powershell
+   py -3 patch.py --bin "C:\Games\sw.bin"
+   ```
+
+   Linux:
+   ```sh
+   python3 patch.py --bin "/path/to/sw.bin"
+   ```
+3. Open `output/wonderful_patched.cue` in your emulator. Keep its BIN in the
+   same folder. Boot the new image and load an in-game memory-card save.
+
+This regular patch includes the revised English dialogue, **right-stick camera
+turning** and **interactions while walking or running**. For analog controls,
+set controller port 1 to **DualShock / analog mode**. Digital controls also work.
+Camera turns retain the game's normal angles and scene locks.
 
 **PCSX-Redux users: enable SPU IRQ.** With that setting disabled, even the
 original Japanese game can wait indefinitely during voiced prologue events.
@@ -32,6 +56,18 @@ Completely close and reopen the disc after replacing an older build. Start
 from a fresh boot and use an ordinary memory-card save: old emulator save states
 retain the previous executable and already-loaded graphics.
 
+## New in this release
+
+- Full extracted-dialogue editorial pass against Japanese and the three games'
+  character guides: 644 revised unique entries at 1,331 occurrences, including
+  Zelgadis's early castle exchanges and clearer late-game explanations.
+- Ten revised movie subtitle cues, including more natural character voices and
+  consistent Xellos spelling. Movie audio is unchanged.
+- The tested camera and moving-interaction changes are now part of the regular
+  patch. Moving confirm still completes the original event and waits for the
+  current step; it does not skip dialogue or rewards.
+- All earlier translation, rendering and battle-menu repairs are included.
+
 ## Translation and rendering
 
 - 3,417 reviewed unique ELS strings at 11,514 indexed occurrences, plus all
@@ -58,7 +94,7 @@ a claim of a complete Wonderful playthrough.
 | File | Bytes | SHA-256 |
 | --- | ---: | --- |
 | Original `sw.bin` | 523117728 | `93560e9c0151baa2fa1321fe056637ef8a42962ef65b80156191b45a1b4bbfc2` |
-| English `wonderful_patched.bin` | 523117728 | `cc774a0661c3943fc6aefe389b732cb8e4264841c7018997534ef1604716e0c8` |
+| English `wonderful_patched.bin` | 523117728 | `b5a896d5e214c21fb5c567f4a8db7747a0a6da2a5c7bcf4b582e89ae355a4e15` |
 | English `wonderful_patched.cue` | 83 | `de66f8498a58a5bc5f8aff03f53b01ee48a5258fe211a4046c37cb44da445eaa` |
 
 No input CUE is required or checked. The optional `--cue` argument is accepted
@@ -84,7 +120,7 @@ It packages an already-built translation; it does not build the translation
 from the original game assets. Parts are limited to 45 MiB each.
 
 ```sh
-python3 maintainer/build_release.py --patch-version 2026-09-12.1
+python3 maintainer/build_release.py --patch-version 2026-10-30.1
 ```
 
 ## Other languages

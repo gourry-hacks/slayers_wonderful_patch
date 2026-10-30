@@ -10,7 +10,7 @@ TITLE = 'Slayers Wonderful'
 ELS = '/ELS/ELS.FS'
 TAG = '/ELS/ELS.TAG'
 EXE = '/SLPS_015.99'
-ENGLISH_HASH = 'cc774a0661c3943fc6aefe389b732cb8e4264841c7018997534ef1604716e0c8'
+ENGLISH_HASH = 'b5a896d5e214c21fb5c567f4a8db7747a0a6da2a5c7bcf4b582e89ae355a4e15'
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
