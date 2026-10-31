@@ -29,7 +29,7 @@ EXPECTED = {'source': {'bin': {'name': 'sw.bin',
                     'sha256': '93560e9c0151baa2fa1321fe056637ef8a42962ef65b80156191b45a1b4bbfc2'}},
  'target': {'bin': {'name': 'wonderful_patched.bin',
                     'size': 523117728,
-                    'sha256': 'b5a896d5e214c21fb5c567f4a8db7747a0a6da2a5c7bcf4b582e89ae355a4e15'},
+                    'sha256': 'a803faceba32ced5d686150f21719eb90a3d9677a96092907353934fb7b4565f'},
             'cue': {'name': 'wonderful_patched.cue',
                     'size': 83,
                     'sha256': 'de66f8498a58a5bc5f8aff03f53b01ee48a5258fe211a4046c37cb44da445eaa'}}}
@@ -174,7 +174,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--target-cue", type=Path, help="legacy argument; CUE is generated"
     )
-    parser.add_argument("--patch-version", default="2026-10-30.1")
+    parser.add_argument("--patch-version", default="2026-10-30.2")
     return parser.parse_args()
 
 

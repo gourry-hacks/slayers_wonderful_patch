@@ -1,10 +1,10 @@
 # Slayers Wonderful English Patch
 
-Version **2026-10-30.1**, for the Japanese PlayStation release **SLPS-01599**.
+Version **2026-10-30.2**, for the Japanese PlayStation release **SLPS-01599**.
 
 ## Patch your image (Windows or Linux)
 
-1. [Download the complete patch ZIP](https://github.com/gourry-hacks/slayers_wonderful_patch/archive/refs/tags/v2026-10-30.1.zip)
+1. [Download the complete patch ZIP](https://github.com/gourry-hacks/slayers_wonderful_patch/archive/refs/tags/v2026-10-30.2.zip)
    and extract it. Install Python 3.10 or newer if needed.
 2. Open a terminal in the extracted folder and run the command for your system,
    replacing the example with the path to your **original Japanese BIN**:
@@ -58,15 +58,17 @@ retain the previous executable and already-loaded graphics.
 
 ## New in this release
 
-- Full extracted-dialogue editorial pass against Japanese and the three games'
-  character guides: 644 revised unique entries at 1,331 occurrences, including
-  Zelgadis's early castle exchanges and clearer late-game explanations.
-- Ten revised movie subtitle cues, including more natural character voices and
-  consistent Xellos spelling. Movie audio is unchanged.
-- The tested camera and moving-interaction changes are now part of the regular
-  patch. Moving confirm still completes the original event and waits for the
-  current step; it does not skip dialogue or rewards.
-- All earlier translation, rendering and battle-menu repairs are included.
+- A fresh read of all 3,417 in-scope text entries, with 175 revisions at 340
+  occurrences. Guild dialogue now identifies the guild rather than sounding
+  like story-route notes. Other fixes restore clear subjects, natural grammar,
+  character voices and useful directions, checked against the Japanese.
+- Five movie cues remove mechanical “Ms. Lina”/“Mr. Gourry” titles. An item label
+  now translates “Shahon” as “Manuscr.” to fit its menu. Movie audio is unchanged.
+- Ren'Py wording is a reference, not a requirement to preserve awkward prose.
+  The October 29 character review and all earlier translation fixes are included.
+- Right-stick camera turns and interactions while walking or running remain
+  part of the regular patch. Moving confirm completes the original event and
+  waits for the current step; it does not skip dialogue or rewards.
 
 ## Translation and rendering
 
@@ -94,7 +96,7 @@ a claim of a complete Wonderful playthrough.
 | File | Bytes | SHA-256 |
 | --- | ---: | --- |
 | Original `sw.bin` | 523117728 | `93560e9c0151baa2fa1321fe056637ef8a42962ef65b80156191b45a1b4bbfc2` |
-| English `wonderful_patched.bin` | 523117728 | `b5a896d5e214c21fb5c567f4a8db7747a0a6da2a5c7bcf4b582e89ae355a4e15` |
+| English `wonderful_patched.bin` | 523117728 | `a803faceba32ced5d686150f21719eb90a3d9677a96092907353934fb7b4565f` |
 | English `wonderful_patched.cue` | 83 | `de66f8498a58a5bc5f8aff03f53b01ee48a5258fe211a4046c37cb44da445eaa` |
 
 No input CUE is required or checked. The optional `--cue` argument is accepted
@@ -120,7 +122,7 @@ It packages an already-built translation; it does not build the translation
 from the original game assets. Parts are limited to 45 MiB each.
 
 ```sh
-python3 maintainer/build_release.py --patch-version 2026-10-30.1
+python3 maintainer/build_release.py --patch-version 2026-10-30.2
 ```
 
 ## Other languages

@@ -1,3 +1,44 @@
+# Release verification — 2026-10-30.2
+
+Target BIN SHA-256:
+`a803faceba32ced5d686150f21719eb90a3d9677a96092907353934fb7b4565f`.
+
+- Read all 3,417 in-scope unique ELS entries in English, checked 213 candidate
+  entries against Japanese and context, and revised 175 entries at 340 actual
+  string slots. Reviewed all 111 production movie captions / 92 semantic cues;
+  five cues in three clips remove mechanical honorifics. Fixed one key-item name
+  that retained the untranslated word “Shahon.”
+- Every revised actual disc string matches its approved text, respects original
+  line-control counts and fits 24 cells. All other ELS strings are unchanged.
+  All 41 original script headers, code and variable sections are unchanged.
+  Only the 24-byte item-name slot changes in the executable; controls, renderer,
+  battle fixes and font cells remain byte-identical to 2026-10-30.1.
+- Relative to the previous release, 2,785 changed raw sectors are confined to ELS,
+  that name slot and the three reviewed movies. All verify EDC/ECC. All 18
+  captioned clips decode fully; all 40,794 production subtitle sectors match
+  their patches. All 8,640 movie XA audio sectors remain byte-identical.
+- New isolated PCSX ReARMed and Beetle PSX runs each complete 24,000 frames:
+  cold boot, opening movies, first battle and return to field. Neither uses a
+  player save or prior emulator state. Revised movie contact sheets were
+  visually inspected. The guild sentence is verified in the actual string bank;
+  these runs do not claim a new natural-playthrough capture of that interaction.
+- Six patcher tests and ten localization tests pass. The real XOR package is
+  checked against the original Japanese image, and the localization adapter is
+  repinned to this base. An empty localization catalog reproduces this BIN
+  exactly.
+
+The review is a complete English editorial read with targeted Japanese
+adjudication, not a fresh independent translation of every Japanese line or a
+full branch-complete playthrough. Proper names, deliberate jokes, Frank's
+robotic speech, original save restrictions and gameplay events are retained.
+No native-port binaries or user saves are modified.
+
+The earlier controls evidence remains applicable because the controls code is
+unchanged. Boot the new CUE and load an in-game save; old emulator savestates
+can retain older text and scripts.
+
+Older dated sections below describe previous releases.
+
 # Release verification — 2026-10-30.1
 
 The regular patch now includes the tested right-stick camera and moving-confirm
