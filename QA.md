@@ -1,3 +1,52 @@
+# Release verification — 2026-11-03.1
+
+Target BIN SHA-256:
+`15d94d4dce78550fe6a100c304ebe49c409a67b2a8aaf5688c4781d3c5ce19b0`.
+
+- Reproduced the reported broken shard labels, clipped crafting instruction and
+  overlapping six-question menu with the old patch. These are patch defects.
+- The repacker now distinguishes scene-specific positioned font consumers from
+  ordinary dialogue. Seven shard labels use the correct secondary encoding;
+  all 18 additional positioned scene literals are checked. Quantity columns
+  leave a six-pixel gutter after the longest label.
+- Shared choice boxes are sized and positioned for the English options in each
+  overlay. All 371 recognized literal choice labels fit their panel and screen;
+  26 overlays require wider boxes. One long option becomes "Use Fireball!!".
+  Giles's composed three-part instruction fits its original dialogue box.
+- All 41 original ELS headers, variables, record sizes, archive extents and TAG
+  metadata are retained. Exactly 59 guarded immediate operands change: choice
+  x/width values and seven quantity x values. All event branches and selection
+  logic are unchanged. Three semantic entries change at four slots, plus seven
+  font-encoding corrections. Fourteen actual R3000 renderer replays verify the
+  seven labels' glyph packets in both positioned font modes.
+- Only 37 raw sectors differ from 2026-10-30.2, confined to ELS.FS, with valid
+  EDC/ECC. The executable, controls, fonts, movies, audio and other assets are
+  byte-identical to that release.
+- Cold-boot tests in both PCSX ReARMed and Beetle PSX load a synthetic original-
+  format card, walk to Giles and open the actual crafting menu. Captures show
+  seven correct labels, legible quantities and contained instructions. ReARMed
+  also crafts Flare Blade; inventory readback verifies fire shards 13→10 and
+  Flare Blade 0→1, with no other item quantities changed.
+- Researcher question-menu captures are visually checked in both cores using a
+  test-only jump into the original dialogue entry. All six choices fit on
+  separate rows, and the first answer executes. This is controlled UI coverage
+  with black background scenery, not a natural researcher quest playthrough;
+  the test jump is absent from the release. Earlier shared-menu tests had
+  missed these scene-specific consumers and narrow choice boxes.
+- Six layout guard tests, six patcher tests and ten localization tests pass.
+  The actual production XOR package reproduces this BIN from the original
+  Japanese image. The updated localization adapter checks the reviewed code
+  geometry, excludes positioned strings from its primary catalog and exports
+  3,329 entries. An empty catalog reproduces this BIN exactly.
+
+This is focused visual and functional coverage plus checks of recognized literal
+consumer patterns across the corpus. It does not establish that every dynamic
+text call, scene or emulator configuration is correct. No native-port binaries
+or user saves are modified. Boot the new CUE and load an in-game memory-card
+save when upgrading; old savestates can retain old scripts.
+
+Older dated sections below describe previous releases.
+
 # Release verification — 2026-10-30.2
 
 Target BIN SHA-256:

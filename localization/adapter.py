@@ -1,6 +1,8 @@
 """Wonderful primary text-bank localization with fixed ELS/code extents."""
 from __future__ import annotations
 import hashlib
+import json
+from pathlib import Path
 import struct
 import string
 from .disc import Disc
@@ -10,7 +12,7 @@ TITLE = 'Slayers Wonderful'
 ELS = '/ELS/ELS.FS'
 TAG = '/ELS/ELS.TAG'
 EXE = '/SLPS_015.99'
-ENGLISH_HASH = 'a803faceba32ced5d686150f21719eb90a3d9677a96092907353934fb7b4565f'
+ENGLISH_HASH = '15d94d4dce78550fe6a100c304ebe49c409a67b2a8aaf5688c4781d3c5ce19b0'
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
@@ -62,6 +64,7 @@ class Project:
         self.groups = {}
         self.parsed = {}
         self.catalog = []
+        menu_layout = json.loads(Path(__file__).with_name('menu_layout.json').read_text())['records']
         by_source = {}
         used = set()
         for r in self.records:
@@ -71,12 +74,19 @@ class Project:
             original = parse_overlay(self.original[start:end], i)
             base = parse_overlay(self.base[start:end], i, allow_zero_tail=True)
             self.parsed[i] = base
-            if self.original[start:start + original['offset_table']] != self.base[start:start + base['offset_table']]:
+            plan = menu_layout[str(i)]
+            expected_prefix = bytearray(self.original[start:start + original['offset_table']])
+            for edit in plan['code_edits']:
+                at = 32 + edit['pc'] * 4
+                if struct.unpack_from('<HH', expected_prefix, at) != (3, edit['before']):
+                    raise ValueError('reviewed menu-layout source instruction changed')
+                struct.pack_into('<HH', expected_prefix, at, 3, edit['after'])
+            if expected_prefix != self.base[start:start + base['offset_table']]:
                 raise ValueError('ELS code/control prefix changed')
             for raw in base['strings']:
                 used.update((int.from_bytes(raw[n:n + 2], 'big') for n in range(len(raw) - 1)))
             for j, raw in enumerate(original['strings']):
-                if j < 205:
+                if j < 205 or j in plan['positioned_indices']:
                     continue
                 try:
                     text = raw.decode('cp932')
