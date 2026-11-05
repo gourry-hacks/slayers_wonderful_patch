@@ -2,7 +2,7 @@
   "schema": 1,
   "project": "Slayers Wonderful English Patch",
   "disc_id": "SLPS-01599",
-  "patch_version": "2026-11-03.1",
+  "patch_version": "2026-11-05.1",
   "source": {
     "bin": {
       "name": "sw.bin",
@@ -14,7 +14,7 @@
     "bin": {
       "name": "wonderful_patched.bin",
       "size": 523117728,
-      "sha256": "15d94d4dce78550fe6a100c304ebe49c409a67b2a8aaf5688c4781d3c5ce19b0"
+      "sha256": "e89c685c1fde7a80d9f2fb2ef37216e3a7398c759c702e7f44be3efcd9175b0c"
     },
     "cue": {
       "name": "wonderful_patched.cue",
@@ -29,24 +29,24 @@
       "block_size": 65536,
       "record_count": 2504,
       "delta_size": 164132232,
-      "delta_sha256": "97f2bcfddfe002b42755a32be73ebbc55fa9ac5c34cb02649641b3d12d49ef2a",
-      "stored_size": 103470568,
-      "stored_sha256": "3f388176dffa630e456c0fa9e738ff3945e36a198226effd23dae25d4a3db02a",
+      "delta_sha256": "5c2e76959e671994cd578ced0c8e4d2e184986a2c27f21d35063c32f78744da8",
+      "stored_size": 103470044,
+      "stored_sha256": "00b2ef31ed48e7fc97058a67b7e49b30f2e3b10dd76bf07a8b59f0f0cfa28498",
       "parts": [
         {
           "path": "patches/wonderful_patched.bin.slrxor.xz.part01",
           "size": 47185920,
-          "sha256": "fa14e2e73f4ce481eccf811439e429441e6c25ce7bb34206e3d3e7bf41cb6c13"
+          "sha256": "e22fedf8f000506a3c995782a04856f427e96851f9c05a8f163137e44d60f8c7"
         },
         {
           "path": "patches/wonderful_patched.bin.slrxor.xz.part02",
           "size": 47185920,
-          "sha256": "b443b48ccdfbfa2eadf17e8dbc2b8f22df9f974e51a53305f0672b7c3b2c9cf2"
+          "sha256": "ce37d73fa684ed5d0177ef0d30288c28863b9b8bf4a1268b5e36ac2c77f219a7"
         },
         {
           "path": "patches/wonderful_patched.bin.slrxor.xz.part03",
-          "size": 9098728,
-          "sha256": "0f0e6c1f90af842d5c832f00576bf3aa858b8b41911bb14eecf69d0bf2f22195"
+          "size": 9098204,
+          "sha256": "4823840578b0ee473bfacb9317890e5e86d94d040b4e1f3ec6bfe4a22520d96b"
         }
       ]
     }

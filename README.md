@@ -1,10 +1,10 @@
 # Slayers Wonderful English Patch
 
-Version **2026-11-03.1**, for the Japanese PlayStation release **SLPS-01599**.
+Version **2026-11-05.1**, for the Japanese PlayStation release **SLPS-01599**.
 
 ## Patch your image (Windows or Linux)
 
-1. [Download the complete patch ZIP](https://github.com/gourry-hacks/slayers_wonderful_patch/archive/refs/tags/v2026-11-03.1.zip)
+1. [Download the complete patch ZIP](https://github.com/gourry-hacks/slayers_wonderful_patch/archive/refs/tags/v2026-11-05.1.zip)
    and extract it. Install Python 3.10 or newer if needed.
 2. Open a terminal in the extracted folder and run the command for your system,
    replacing the example with the path to your **original Japanese BIN**:
@@ -58,6 +58,16 @@ retain the previous executable and already-loaded graphics.
 
 ## New in this release
 
+- Fixes missing initial letters and incorrect digits in world-map labels,
+  including Cottage, Dragon Cave, Old Castle and the Lake Marren roads.
+- All 23 destination labels use their correct font mapping, with centered
+  boxes sized from the English text. Destination choices and event behavior
+  are unchanged.
+- Includes the earlier crafting/choice-menu fixes, revised dialogue and both
+  standard controls improvements.
+
+## November 3 menu revision (included)
+
 - Fixes missing or incorrect letters in Giles's seven shard labels, adds room
   before their quantities, and keeps his crafting instructions inside the box.
 - Sizes the shared choice boxes for their English labels. The researcher's six
@@ -105,7 +115,7 @@ a claim of a complete Wonderful playthrough.
 | File | Bytes | SHA-256 |
 | --- | ---: | --- |
 | Original `sw.bin` | 523117728 | `93560e9c0151baa2fa1321fe056637ef8a42962ef65b80156191b45a1b4bbfc2` |
-| English `wonderful_patched.bin` | 523117728 | `15d94d4dce78550fe6a100c304ebe49c409a67b2a8aaf5688c4781d3c5ce19b0` |
+| English `wonderful_patched.bin` | 523117728 | `e89c685c1fde7a80d9f2fb2ef37216e3a7398c759c702e7f44be3efcd9175b0c` |
 | English `wonderful_patched.cue` | 83 | `de66f8498a58a5bc5f8aff03f53b01ee48a5258fe211a4046c37cb44da445eaa` |
 
 No input CUE is required or checked. The optional `--cue` argument is accepted
@@ -131,7 +141,7 @@ It packages an already-built translation; it does not build the translation
 from the original game assets. Parts are limited to 45 MiB each.
 
 ```sh
-python3 maintainer/build_release.py --patch-version 2026-11-03.1
+python3 maintainer/build_release.py --patch-version 2026-11-05.1
 ```
 
 ## Other languages

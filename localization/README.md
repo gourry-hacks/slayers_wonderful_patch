@@ -1,7 +1,7 @@
 # Wonderful localization toolkit
 
 This follows Royal 1's export → PO translation → validation → disc-build
-workflow. Version 0.1 covers 3,329 unique primary-renderer strings covering 6,776 indexed occurrences in 40 of the 41 ELS overlays.
+workflow. Version 0.1 covers 3,319 unique primary-renderer strings covering 6,766 indexed occurrences in 39 of the 41 ELS overlays.
 Japanese text and the English reference are extracted from the contributor's
 own verified disc and the packaged English XOR patch. No source script or
 font artwork is bundled with this toolkit.
@@ -13,7 +13,8 @@ not acquire a Unicode renderer. English letters and punctuation keep their
 existing glyphs. Every ELS record and disc extent keeps its original size;
 code/control prefixes stay byte-identical to the reviewed English base, and
 the TAG index stays byte-identical to the original. The adapter checks the
-base's 59 reviewed menu-position/width immediates against the original code;
+base's 61 reviewed menu-position/width immediates and 20 world-caption size
+values against the original code/data;
 all other prefix bytes must match. A bank that
 overflows fails with its required size and capacity. The secondary menu
 renderer (indices 54–204 and scene-specific positioned labels identified in
@@ -108,9 +109,10 @@ python3 -m unittest discover -s localization/tests -v
 
 The adapter pins the English base and fails closed on a new release until its
 layout/font assumptions are reviewed. The current supported English base is
-**2026-11-03.1**, including the menu-layout fixes, revised dialogue and standard
-controls update. Re-export against this base when updating a catalog; the eight
-scene-specific positioned strings removed from the primary catalog retain
+**2026-11-05.1**, including the menu-layout fixes, revised dialogue and standard
+controls update. Re-export against this base when updating a catalog; the eighteen
+scene-specific positioned strings, including world-map labels, removed from
+the primary catalog retain
 English. Existing catalog files are never automatically overwritten.
 Keep original-disc extraction local;
 commit intentional target-language catalogs separately, not generated source

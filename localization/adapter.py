@@ -12,7 +12,7 @@ TITLE = 'Slayers Wonderful'
 ELS = '/ELS/ELS.FS'
 TAG = '/ELS/ELS.TAG'
 EXE = '/SLPS_015.99'
-ENGLISH_HASH = '15d94d4dce78550fe6a100c304ebe49c409a67b2a8aaf5688c4781d3c5ce19b0'
+ENGLISH_HASH = 'e89c685c1fde7a80d9f2fb2ef37216e3a7398c759c702e7f44be3efcd9175b0c'
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
@@ -81,6 +81,11 @@ class Project:
                 if struct.unpack_from('<HH', expected_prefix, at) != (3, edit['before']):
                     raise ValueError('reviewed menu-layout source instruction changed')
                 struct.pack_into('<HH', expected_prefix, at, 3, edit['after'])
+            for edit in plan['variable_edits']:
+                at = original['words'][5] + 4 * edit['variable']
+                if struct.unpack_from('<I', expected_prefix, at)[0] != edit['before']:
+                    raise ValueError('reviewed world-caption size changed in source')
+                struct.pack_into('<I', expected_prefix, at, edit['after'])
             if expected_prefix != self.base[start:start + base['offset_table']]:
                 raise ValueError('ELS code/control prefix changed')
             for raw in base['strings']:

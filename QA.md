@@ -1,3 +1,49 @@
+# Release verification — 2026-11-05.1
+
+Target BIN SHA-256:
+`e89c685c1fde7a80d9f2fb2ef37216e3a7398c759c702e7f44be3efcd9175b0c`.
+
+- The earlier menu fix missed the world map's indirect string lookup. Ten
+  scene-specific destination labels now use secondary font carriers. All 23
+  world captions are checked, including names already using shared labels.
+- Twenty Japanese-sized width values are replaced with English-derived sizes;
+  two source-guarded position operands center the resulting panels. Every
+  caption fits its panel and the 320-pixel screen. Event IDs, branches,
+  destination order and interaction behavior are unchanged.
+- Across all 41 scripts, every positioned-text call's final string producer is
+  audited. Literal producers and three checked indirect table families cover
+  every call in the current source. Unexpected indirect tables fail the build.
+- Forty records are byte-identical to 2026-11-03.1. The world record retains its
+  header, cardinalities, all other code/data and other string slots. Only three
+  raw sectors change, all within that record, with valid EDC/ECC. Executable,
+  controls, fonts, movies, audio, battle assets and other disc files match the
+  previous release exactly.
+- Forty-six R3000 replays execute the shipped positioned renderer: all 23
+  labels in both font modes, including uppercase glyph UVs, punctuation,
+  packet types, advancement and panel bounds.
+- Fresh boots in PCSX ReARMed and Beetle PSX load synthetic original-format
+  memory cards and use controller input to reach the original world-map
+  captions. Old Castle, Dragon Cave, Cottage, Lake Marren–Sairaag and Mountain
+  of Dead Souls are visually checked in both cores. Old-build runs reproduce
+  the missing letters and overflow shown in the reports. Dragon Cave's QA
+  card explicitly enables its original trigger flag; these are controlled UI
+  checks, not a naturally progressed full playthrough. No shipped test jumps
+  or player-card changes are used.
+- Five new source/layout guard tests, six earlier menu-layout guard tests,
+  six patcher tests and ten localization tests pass. The production XOR
+  package applied to the original Japanese BIN reproduces this exact target.
+  Localization verifies the 61 allowed code immediates and 20 data widths;
+  3,319 primary entries remain across 39 overlays. An empty catalog reproduces
+  this BIN exactly.
+
+Right-stick turns and interactions while moving remain included by default.
+No native-port binaries or player saves are modified. Boot the new CUE and load
+an in-game memory-card save so previously loaded script data is refreshed.
+This establishes focused world-caption coverage and current-source consumer
+coverage; it is not a full playthrough or a test of every graphics renderer.
+
+Older dated sections below describe previous releases.
+
 # Release verification — 2026-11-03.1
 
 Target BIN SHA-256:
